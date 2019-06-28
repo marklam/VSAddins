@@ -25,6 +25,7 @@ namespace ShowOrderedBuildOutput
     /// </remarks>
     [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
     [Guid(ShowOrderedBuildOutputPackage.PackageGuidString)]
+    [ProvideAutoLoad(Microsoft.VisualStudio.VSConstants.UICONTEXT.SolutionExistsAndFullyLoaded_string, PackageAutoLoadFlags.BackgroundLoad)]
     [ProvideMenuResource("Menus.ctmenu", 1)]
     public sealed class ShowOrderedBuildOutputPackage : AsyncPackage
     {

@@ -41,8 +41,18 @@ namespace ShowOrderedBuildOutput
             commandService = commandService ?? throw new ArgumentNullException(nameof(commandService));
 
             var menuCommandID = new CommandID(CommandSet, CommandId);
-            var menuItem = new MenuCommand(this.Execute, menuCommandID);
+            var menuItem = new OleMenuCommand(this.Execute, menuCommandID);
+            menuItem.BeforeQueryStatus += MenuItem_BeforeQueryStatus;
             commandService.AddCommand(menuItem);
+        }
+
+        private void MenuItem_BeforeQueryStatus(object sender, EventArgs e)
+        {
+            var button = sender as OleMenuCommand;
+            if (button != null)
+            {
+                button.Checked = Settings.Default.Checked;
+            }
         }
 
         /// <summary>
@@ -89,17 +99,14 @@ namespace ShowOrderedBuildOutput
         private void Execute(object sender, EventArgs e)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
-            string message = string.Format(CultureInfo.CurrentCulture, "Inside {0}.MenuItemCallback()", this.GetType().FullName);
-            string title = "AutoShowOrderdBuildOutputCommand";
 
-            // Show a message box to prove we were here
-            VsShellUtilities.ShowMessageBox(
-                this.package,
-                message,
-                title,
-                OLEMSGICON.OLEMSGICON_INFO,
-                OLEMSGBUTTON.OLEMSGBUTTON_OK,
-                OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST);
+            var button = sender as OleMenuCommand;
+            if (button != null)
+            {
+                Settings.Default.Checked = !Settings.Default.Checked;
+                Settings.Default.Save();
+                button.Checked = Settings.Default.Checked;
+            }
         }
     }
 }
