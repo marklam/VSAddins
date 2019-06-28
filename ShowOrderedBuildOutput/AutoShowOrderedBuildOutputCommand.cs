@@ -8,7 +8,7 @@ namespace ShowOrderedBuildOutput
     /// <summary>
     /// Command handler
     /// </summary>
-    internal sealed class AutoShowOrderdBuildOutputCommand
+    internal sealed class AutoShowOrderedBuildOutputCommand
     {
         /// <summary>
         /// Command ID.
@@ -26,12 +26,12 @@ namespace ShowOrderedBuildOutput
         private readonly AsyncPackage package;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="AutoShowOrderdBuildOutputCommand"/> class.
+        /// Initializes a new instance of the <see cref="AutoShowOrderedBuildOutputCommand"/> class.
         /// Adds our command handlers for menu (commands must exist in the command table file)
         /// </summary>
         /// <param name="package">Owner package, not null.</param>
         /// <param name="commandService">Command service to add command to, not null.</param>
-        private AutoShowOrderdBuildOutputCommand(AsyncPackage package, OleMenuCommandService commandService)
+        private AutoShowOrderedBuildOutputCommand(AsyncPackage package, OleMenuCommandService commandService)
         {
             this.package = package ?? throw new ArgumentNullException(nameof(package));
             commandService = commandService ?? throw new ArgumentNullException(nameof(commandService));
@@ -54,7 +54,7 @@ namespace ShowOrderedBuildOutput
         /// <summary>
         /// Gets the instance of the command.
         /// </summary>
-        public static AutoShowOrderdBuildOutputCommand Instance
+        public static AutoShowOrderedBuildOutputCommand Instance
         {
             get;
             private set;
@@ -82,7 +82,7 @@ namespace ShowOrderedBuildOutput
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync(package.DisposalToken);
 
             OleMenuCommandService commandService = await package.GetServiceAsync(typeof(IMenuCommandService)) as OleMenuCommandService;
-            Instance = new AutoShowOrderdBuildOutputCommand(package, commandService);
+            Instance = new AutoShowOrderedBuildOutputCommand(package, commandService);
         }
 
         /// <summary>
