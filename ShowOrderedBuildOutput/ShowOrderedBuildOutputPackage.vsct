@@ -56,7 +56,7 @@
         <Parent guid="guidShowOrderedBuildOutputPackageCmdSet" id="MyMenuGroup" />
         <Icon guid="guidImages" id="bmpPic1" />
         <Strings>
-          <ButtonText>Invoke AutoShowOrderdBuildOutputCommand</ButtonText>
+          <ButtonText>Show Build Order Pane After Build</ButtonText>
         </Strings>
       </Button>
     </Buttons>
