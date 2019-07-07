@@ -9,6 +9,10 @@ trigger:
 pool:
   vmImage: 'windows-latest'
 
+name: 1.0.$(myBuildCounter).0
+variables: myBuildCounter
+$[counter('buildCounter', 1)]
+
 variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
@@ -24,7 +28,7 @@ steps:
 - task: VersionAssemblies@2
   inputs:
     Path: '$(Build.SourcesDirectory)'
-    VersionNumber: '$(Build.BuildNumber)'
+    VersionNumber: '$(myBuildCounter)'
     InjectVersion: False
     FilenamePattern: 'AssemblyInfo.*'
     OutputVersion: 'OutputedVersion'
@@ -32,7 +36,7 @@ steps:
 - task: VersionVSIX@2
   inputs:
     Path: '$(Build.SourcesDirectory)'
-    VersionNumber: '$(Build.BuildNumber)'
+    VersionNumber: '$(myBuildCounter)'
     UseRegex: true
     DigitMode: 'All'
     VersionRegex: '\d+\.\d+\.\d+\.\d+'
