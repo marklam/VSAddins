@@ -30,7 +30,7 @@ steps:
     OutputVersion: 'OutputedVersion'
 
 - task: VersionVSIX@2
-    inputs:
+  inputs:
     Path: '$(Build.SourcesDirectory)'
     VersionNumber: '$(Build.BuildNumber)'
     UseRegex: true
