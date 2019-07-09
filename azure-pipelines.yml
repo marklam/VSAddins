@@ -3,8 +3,6 @@
 # Add steps that publish symbols, save build artifacts, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/apps/windows/dot-net
 
-name: 1.0.$(rev:r)
-
 trigger:
 - master
 
@@ -15,6 +13,9 @@ variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
+  patch: $[counter('VersionCounter', 0)]
+
+name: 1.0.$(patch)
 
 steps:
 - task: NuGetToolInstaller@0
