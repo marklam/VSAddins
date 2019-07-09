@@ -52,5 +52,5 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
-- publish: bin\Release\ShowOrderedBuildOutput.vsix
+- publish: $(Build.SourcesDirectory)\bin\Release\ShowOrderedBuildOutput.vsix
   artifact: Vsix
