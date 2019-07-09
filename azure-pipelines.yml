@@ -15,7 +15,7 @@ variables:
   buildConfiguration: 'Release'
   patch: $[counter('VersionCounter', 0)]
 
-name: 1.0.$(patch)
+name: 1.0.$(patch).0
 
 steps:
 - task: NuGetToolInstaller@0
