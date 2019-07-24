@@ -4,7 +4,7 @@
         <Identity Id="ShowOrderedBuildOutput.25cb3e9d-f748-47e4-931b-7543fe45fdbe" Version="1.0" Language="en-US" Publisher="Mark Lambert" />
         <DisplayName>Show Ordered Build Output</DisplayName>
         <Description xml:space="preserve">Automatically show the ordered build output pane after each build.</Description>
-        <Tags>build;ouput;ordered;sorted;automatic</Tags>
+        <Tags>build,ouput,ordered,sorted,automatic</Tags>
     </Metadata>
     <Installation>
         <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[16.0, 17.0)" />
