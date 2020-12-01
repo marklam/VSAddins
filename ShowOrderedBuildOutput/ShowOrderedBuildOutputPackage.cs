@@ -1,9 +1,7 @@
-﻿using System;
+﻿using Microsoft.VisualStudio.Shell;
+using System;
 using System.Runtime.InteropServices;
 using System.Threading;
-using Microsoft.VisualStudio;
-using Microsoft.VisualStudio.Shell;
-using Microsoft.VisualStudio.Shell.Interop;
 using Task = System.Threading.Tasks.Task;
 
 namespace ShowOrderedBuildOutput
@@ -27,16 +25,13 @@ namespace ShowOrderedBuildOutput
     /// </remarks>
     [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
     [Guid(ShowOrderedBuildOutputPackage.PackageGuidString)]
-    [ProvideAutoLoad(VSConstants.UICONTEXT.SolutionExistsAndFullyLoaded_string, PackageAutoLoadFlags.BackgroundLoad)]
     [ProvideMenuResource("Menus.ctmenu", 1)]
     public sealed class ShowOrderedBuildOutputPackage : AsyncPackage
     {
         /// <summary>
         /// ShowOrderedBuildOutputPackage GUID string.
         /// </summary>
-        public const string PackageGuidString = "d54b44ee-7a6a-4b2b-8538-d509a3bf021f";
-        private IVsSolutionBuildManager buildManager;
-        private uint bmCookie = VSConstants.VSCOOKIE_NIL;
+        public const string PackageGuidString = "8e646710-fec9-4f08-b26f-885923efdf95";
 
         #region Package Members
 
@@ -53,43 +48,8 @@ namespace ShowOrderedBuildOutput
             // Do any initialization that requires the UI thread after switching to the UI thread.
             await this.JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
             await AutoShowOrderedBuildOutputCommand.InitializeAsync(this);
-
-            var outputWindow = (IVsOutputWindow)await GetServiceAsync(typeof(SVsOutputWindow));
-            if (outputWindow != null)
-            {
-                IVsOutputWindowPane buildOrderPane;
-                outputWindow.GetPane(VSConstants.OutputWindowPaneGuid.SortedBuildOutputPane_guid, out buildOrderPane);
-
-                if (buildOrderPane != null)
-                {
-                    buildManager = (IVsSolutionBuildManager)await GetServiceAsync(typeof(SVsSolutionBuildManager));
-                    if (buildManager != null)
-                    {
-                        buildManager.AdviseUpdateSolutionEvents(new SolutionEventReceiver(buildOrderPane), out bmCookie);
-                    }
-                }
-            }
         }
 
         #endregion
-
-        protected override void Dispose(bool disposing)
-        {
-            // Presumably we could get here via the Finalizer, so we don't want to throw if it's not the UI thread
-            if (disposing)
-            {
-#pragma warning disable VSTHRD108 // Assert thread affinity unconditionally
-                ThreadHelper.ThrowIfNotOnUIThread();
-#pragma warning restore VSTHRD108 // Assert thread affinity unconditionally
-
-                if (bmCookie != VSConstants.VSCOOKIE_NIL && buildManager != null)
-                {
-                    buildManager.UnadviseUpdateSolutionEvents(bmCookie);
-                    bmCookie = VSConstants.VSCOOKIE_NIL;
-                }
-            }
-
-            base.Dispose(disposing);
-        }
     }
 }

@@ -52,7 +52,7 @@
               <CommandFlag>DefaultInvisible</CommandFlag>
               <CommandFlag>DynamicVisibility</CommandFlag>
           If you do not want an image next to your command, remove the Icon node /> -->
-      <Button guid="guidShowOrderedBuildOutputPackageCmdSet" id="AutoShowOrderdBuildOutputCommandId" priority="0x0100" type="Button">
+      <Button guid="guidShowOrderedBuildOutputPackageCmdSet" id="AutoShowOrderedBuildOutputCommandId" priority="0x0100" type="Button">
         <Parent guid="guidShowOrderedBuildOutputPackageCmdSet" id="MyMenuGroup" />
         <Icon guid="guidImages" id="bmpPic1" />
         <Strings>
@@ -68,7 +68,7 @@
             bitmap strip containing the bitmaps and then there are the numeric ids of the elements used
             inside a button definition. An important aspect of this declaration is that the element id
             must be the actual index (1-based) of the bitmap inside the bitmap strip. -->
-      <Bitmap guid="guidImages" href="Resources\AutoShowOrderdBuildOutputCommand.png" usedList="bmpPic1"/>
+      <Bitmap guid="guidImages" href="Resources\AutoShowOrderedBuildOutputCommand.png" usedList="bmpPic1"/>
     </Bitmaps>
   </Commands>
 
@@ -79,11 +79,16 @@
     <!-- This is the guid used to group the menu commands together -->
     <GuidSymbol name="guidShowOrderedBuildOutputPackageCmdSet" value="{d49e7483-8fe9-4711-b072-ea92c37936f7}">
       <IDSymbol name="MyMenuGroup" value="0x1020" />
-      <IDSymbol name="AutoShowOrderdBuildOutputCommandId" value="0x0100" />
+      <IDSymbol name="AutoShowOrderedBuildOutputCommandId" value="0x0100" />
     </GuidSymbol>
 
     <GuidSymbol name="guidImages" value="{ba9a1cec-f8dc-4f6c-8ab7-00b6e3253b00}" >
       <IDSymbol name="bmpPic1" value="1" />
+      <IDSymbol name="bmpPic2" value="2" />
+      <IDSymbol name="bmpPicSearch" value="3" />
+      <IDSymbol name="bmpPicX" value="4" />
+      <IDSymbol name="bmpPicArrows" value="5" />
+      <IDSymbol name="bmpPicStrikethrough" value="6" />
     </GuidSymbol>
   </Symbols>
 </CommandTable>

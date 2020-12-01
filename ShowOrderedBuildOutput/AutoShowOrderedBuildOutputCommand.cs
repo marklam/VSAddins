@@ -38,13 +38,13 @@ namespace ShowOrderedBuildOutput
 
             var menuCommandID = new CommandID(CommandSet, CommandId);
             var menuItem = new OleMenuCommand(this.Execute, menuCommandID);
-            menuItem.BeforeQueryStatus += MenuItem_BeforeQueryStatus;
+			menuItem.BeforeQueryStatus += MenuItem_BeforeQueryStatus;
             commandService.AddCommand(menuItem);
         }
 
         private void MenuItem_BeforeQueryStatus(object sender, EventArgs e)
         {
-            var button = sender as OleMenuCommand;
+            var button = sender as MenuCommand;
             if (button != null)
             {
                 button.Checked = Settings.Default.Checked;
@@ -63,7 +63,7 @@ namespace ShowOrderedBuildOutput
         /// <summary>
         /// Gets the service provider from the owner package.
         /// </summary>
-        private IAsyncServiceProvider ServiceProvider
+        private Microsoft.VisualStudio.Shell.IAsyncServiceProvider ServiceProvider
         {
             get
             {
@@ -77,7 +77,7 @@ namespace ShowOrderedBuildOutput
         /// <param name="package">Owner package, not null.</param>
         public static async Task InitializeAsync(AsyncPackage package)
         {
-            // Switch to the main thread - the call to AddCommand in AutoShowOrderdBuildOutputCommand's constructor requires
+            // Switch to the main thread - the call to AddCommand in AutoShowOrderedBuildOutputCommand's constructor requires
             // the UI thread.
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync(package.DisposalToken);
 
@@ -96,7 +96,7 @@ namespace ShowOrderedBuildOutput
         {
             ThreadHelper.ThrowIfNotOnUIThread();
 
-            var button = sender as OleMenuCommand;
+            var button = sender as MenuCommand;
             if (button != null)
             {
                 Settings.Default.Checked = !Settings.Default.Checked;

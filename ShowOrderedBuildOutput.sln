@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
-VisualStudioVersion = 16.0.29020.237
+VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShowOrderedBuildOutput", "ShowOrderedBuildOutput\ShowOrderedBuildOutput.csproj", "{C79A08BE-6F14-4631-80C7-4A6854F090A3}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{876EB0EC-24CA-4D89-9EE0-9C55A3C212F0}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0500EBA4-AC75-412D-9739-03E660786886}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
 		azure-pipelines.yml = azure-pipelines.yml
@@ -26,6 +26,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {F815837A-FCEC-44D8-B241-5240EED5ED68}
+		SolutionGuid = {2A7C22AB-E974-4E22-9554-0F57FE57996F}
 	EndGlobalSection
 EndGlobal
